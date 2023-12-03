@@ -182,33 +182,44 @@
               {%- when 'description' -%}
                 {%- if product.description != blank -%}
                   {% if product.metafields.info.collapsible_description == true %}
-<<<<<<< HEAD
-                    <div>{{ product.description |  split: '<!--split-->' |  first }}</div>
-=======
-
-                    <div>{{ product.description |  split: '<!--split-->' |  first }}</div>
-                    
->>>>>>> 9b359d51e0244e15823980990cba1ae0f608adb2
-                    {% comment %} add our custom code here {% endcomment %}
-                    <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
-                      <details id="Details-{{ block.id }}-{{ section.id }}">
-                        <summary>
-                          <div class="summary__title">
-                            {% render 'icon-accordion', icon: 'clipboard'%}
-                            <h2 class="h4 accordion__title inline-richtext">
-                              Description
-                            </h2>
+                    {% if product.description | contain: '<!--split-->' %}
+                      <div>{{ product.description | split: '<!--split-->' | first }}</div>
+                      {% comment %} add our custom code here {% endcomment %}
+                      <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+                        <details id="Details-{{ block.id }}-{{ section.id }}">
+                          <summary>
+                            <div class="summary__title">
+                              {% render 'icon-accordion', icon: 'clipboard' %}
+                              <h2 class="h4 accordion__title inline-richtext">Description ooo</h2>
+                            </div>
+                            {% render 'icon-caret' %}
+                          </summary>
+                          <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                            {{ product.description | split: '<!--split-->' | last }}
                           </div>
-                          {% render 'icon-caret' %}
-                        </summary>
-                        <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                          Description
-                        </div>
-                      </details>
-                    </div>
+                        </details>
+                      </div>
+
+                    {% else %}
+                      <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+                        <details id="Details-{{ block.id }}-{{ section.id }}">
+                          <summary>
+                            <div class="summary__title">
+                              {% render 'icon-accordion', icon: 'clipboard' %}
+                              <h2 class="h4 accordion__title inline-richtext">Description ooo</h2>
+                            </div>
+                            {% render 'icon-caret' %}
+                          </summary>
+                          <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                            {{ product.description | split: '<!--split-->' | last }}
+                          </div>
+                        </details>
+                      </div>
+                    {% endif %}
+
                   {% else %}
                     <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
-                      {{ product.description |  split: '<!--split-->' |  last }}
+                      {{ product.description }}
                     </div>
                   {% endif %}
                 {%- endif -%}
