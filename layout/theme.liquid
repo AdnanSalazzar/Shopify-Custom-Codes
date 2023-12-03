@@ -283,7 +283,6 @@
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
-    {{ 'HIII' }}
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -292,15 +291,24 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
-    {% sections 'header-group' %}
-    {% sections 'special-section' %}
-    
+    {% unless template.name == 'product' %}
+      {% sections 'header-group' %}
+      {% sections 'special-section' %}
+    {% endunless %}
+    {% comment %}
+      prints the template page u are in
+      {{ template }}
+    {% endcomment %}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
 
-    {% sections 'footer-group' %}
+    {% unless product.handle == 'the-collection-snowboard-liquid' %}
+      {% sections 'footer-group' %}
+    {% endunless %}
+
+    {% comment %} take the title from the URL cz they wont change that much while they change the title {% endcomment %}
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
