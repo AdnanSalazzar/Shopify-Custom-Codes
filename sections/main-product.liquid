@@ -182,6 +182,7 @@
               {%- when 'description' -%}
                 {%- if product.description != blank -%}
                   {% if product.metafields.info.collapsible_description == true %}
+                    <div>{{ product.description |  split: '<!--split-->' |  first }}</div>
                     {% comment %} add our custom code here {% endcomment %}
                     <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
                       <details id="Details-{{ block.id }}-{{ section.id }}">
