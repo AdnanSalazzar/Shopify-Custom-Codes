@@ -29,7 +29,6 @@
         assign contact_form_class = 'isolate scroll-trigger animate--slide-in'
       endif
     -%}
-    {% comment %} This is where the contact form begins  {% endcomment %}
     {%- form 'contact', id: 'ContactForm', class: contact_form_class -%}
       {%- if form.posted_successfully? -%}
         <h2 class="form-status form-status-list form__message" tabindex="-1" autofocus>
@@ -52,7 +51,6 @@
           </li>
         </ul>
       {%- endif -%}
-      {% comment %} this is where the box starts {% endcomment %}
       <div class="contact__fields">
         <div class="field">
           <input
@@ -66,7 +64,6 @@
           >
           <label class="field__label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
         </div>
-
         <div class="field field--with-error">
           <input
             autocomplete="email"
@@ -100,18 +97,6 @@
           {%- endif -%}
         </div>
       </div>
-
-      <div class="field">
-        <input
-          class="field__input"
-          type="text"
-          id="ContactForm-website"
-          name="contact[website]"
-          placeholder="Website"
-        >
-        <label class="field__label" for="ContactForm-website">Website</label>
-      </div>
-
       <div class="field">
         <input
           type="tel"
@@ -125,7 +110,6 @@
         >
         <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
       </div>
-
       <div class="field">
         <textarea
           rows="10"
@@ -138,20 +122,6 @@
         </textarea>
         <label class="form__label field__label" for="ContactForm-body">
           {{- 'templates.contact.form.comment' | t -}}
-        </label>
-      </div>
-
-      <div class="field">
-        <textarea
-          rows="10"
-          id="ContactForm-message"
-          class="text-area field__input"
-          name="contact[message]"
-          placeholder="Message"
-        ></textarea>
-        
-        <label class="form__label field__label" for="ContactForm-message">
-          Message
         </label>
       </div>
       <div class="contact__button">
