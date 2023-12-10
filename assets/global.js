@@ -1130,8 +1130,12 @@ class VariantSelects extends HTMLElement {
         }
 
         const price = document.getElementById(`price-${this.dataset.section}`);
+        /* I added here */
+        const inventory = document.getElementById(`inventory-${this.dataset.section}`)
 
         if (price) price.classList.remove('hidden');
+
+        if(inventory) inventory.classList.remove('visibility-hidden'), this.updateInventory(html)
 
         if (inventoryDestination) inventoryDestination.classList.toggle('hidden', inventorySource.innerText === '');
 
@@ -1150,6 +1154,16 @@ class VariantSelects extends HTMLElement {
         });
       });
   }
+
+
+  updateInventory(html) {
+    const id = `inventory-${this.dataset.section}`;
+    const destination = document.getElementById(id);
+    const source = html.getElementById(id);
+  
+    if (source && destination) destination.innerHTML = source.innerHTML;
+  }
+
 
   toggleAddButton(disable = true, text, modifyClass = true) {
     const productForm = document.getElementById(`product-form-${this.dataset.section}`);
@@ -1185,6 +1199,7 @@ class VariantSelects extends HTMLElement {
     addButtonText.textContent = window.variantStrings.unavailable;
     if (price) price.classList.add('hidden');
     if (inventory) inventory.classList.add('hidden');
+    if (inventory) inventory.classList.add('visibility-hidden');
     if (sku) sku.classList.add('hidden');
     if (pricePerItem) pricePerItem.classList.add('hidden');
     if (volumeNote) volumeNote.classList.add('hidden');
