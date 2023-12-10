@@ -12,6 +12,12 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .adnan-custom-checkbox{
+    margin-bottom: 2rem; 
+    display: flex; 
+    align-items:center; 
+  }
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
@@ -101,9 +107,6 @@
         </div>
       </div>
 
-
-      {{ 'hi from local' }}
-
       <div class="field">
         <input
           class="field__input"
@@ -144,6 +147,31 @@
         </label>
       </div>
 
+      {% comment %}  {% endcomment %}
+
+      {% comment %} Drop down section {% endcomment %}
+      <div class="field">
+        <div class="select">
+          <select
+            id="ContactForm-color"
+            style="font-size:inherit; padding-top:0.8rem"
+            class="field__input select__select"
+            name="contact[color]"
+          >
+            <option value="red">Red</option>
+            <option value="blue">blue</option>
+            <option value="green">green</option>
+            <option selected disabled>Choose a Damn color:</option>
+          </select>
+          <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+            </path>
+          </svg>
+        </div>
+
+        <label for="ContactForm-color" style="visibility: hidden; " class="field__label">Choose a Damn color:</label>
+      </div>
+
       <div class="field">
         <textarea
           rows="10"
@@ -153,10 +181,15 @@
           placeholder="Message"
         ></textarea>
 
-        <label class="form__label field__label" for="ContactForm-message">
-          Message
-        </label>
+        <label class="form__label field__label" for="ContactForm-message"> Message </label>
       </div>
+
+      {% comment %} name arrtribute gicves how ur back end gonna work or in ur email {% endcomment %}
+
+      <div class="adnan-custom-checkbox">
+        <input type="checkbox" name="contact[gift]" value="yes"> <label for="gift">I AGREE</label>
+      </div>
+
       <div class="contact__button">
         <button type="submit" class="button">
           {{ 'templates.contact.form.send' | t }}
@@ -239,3 +272,5 @@
   ]
 }
 {% endschema %}
+
+
