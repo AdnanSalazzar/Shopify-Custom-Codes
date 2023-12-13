@@ -286,6 +286,19 @@
                         </span>
                         {% render 'icon-minus' %}
                       </button>
+
+                      
+                      {% assign min_value = product.metafields.wholesale.minimum_quantity %}
+
+                      {% if min_value == blank %}
+                        min_value = 1 ; 
+                        
+                      {% endif %}
+
+                          {% comment %}
+                             Step: How much u are incremeting
+                             onkeydown="return false" : no typing in it 
+                           {% endcomment %}
                       <input
                         class="quantity__input"
                         type="number"
@@ -298,9 +311,10 @@
                           data-max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
                           max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
                         {% endif %}
-                        step="{{ product.selected_or_first_available_variant.quantity_rule.increment }}"
+                        step="{{ product.selected_or_first_available_variant.quantity_rule.increment }}" 
                         value="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
                         form="{{ product_form_id }}"
+                        onkeydown="return false"
                       >
                       <button class="quantity__button no-js-hidden" name="plus" type="button">
                         <span class="visually-hidden">
@@ -308,6 +322,8 @@
                         </span>
                         {% render 'icon-plus' %}
                       </button>
+
+
                     </quantity-input>
                     {%- liquid
                       assign volume_pricing_array = product.selected_or_first_available_variant.quantity_price_breaks | sort: 'quantity' | reverse
