@@ -247,6 +247,7 @@
                                 </span>
                                 {% render 'icon-minus' %}
                               </button>
+                              {% comment %} here is the change  {% endcomment %}
                               <input
                                 class="quantity__input"
                                 data-quantity-variant-id="{{ item.variant.id }}"
@@ -449,6 +450,8 @@
     </form>
   </div>
 </cart-items>
+
+
 
 {% schema %}
 {

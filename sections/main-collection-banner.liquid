@@ -4,7 +4,7 @@
 {%- style -%}
   @media screen and (max-width: 749px) {
     .collection-hero--with-image .collection-hero__inner {
-      padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 2rem);
+      padding-bottom: calc({{settings.media_shadow_vertical_offset | at_least: 0}}px + 2rem);
     }
   }
 {%- endstyle -%}
@@ -18,7 +18,15 @@
       </h1>
 
       {%- if section.settings.show_collection_description -%}
-        <div class="collection-hero__description rte">{{ collection.description }}</div>
+        {% if collection.title == 'automatedcollection' %}
+          <div class="collection-hero__description rte">
+            {{ collection.description | split: '<!--split-->' | first }}
+          </div>
+        {% else %}
+          <div class="collection-hero__description rte">
+            {{ collection.description}}
+          </div>
+        {% endif %}
       {%- endif -%}
     </div>
 
